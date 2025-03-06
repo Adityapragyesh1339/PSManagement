@@ -7,20 +7,22 @@ import CategoryPage from './pages/CategoryPage';
 import { AuthProvider } from './context/AuthContext';
 import './index.css'
 
+
 function App() {
   return (
     <AuthProvider>
       <Router>
-        <div className="min-h-screen flex bg-indigo-200 justify center">
-        
-
+        <div className="flex flex-col min-h-screen">
           <Navbar />
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/category/:type" element={<CategoryPage />} />
-          </Routes>
+          {/* Add padding-top to account for fixed navbar height */}
+          <main className="flex-grow pt-16">
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/category/:type" element={<CategoryPage />} />
+            </Routes>
+          </main>
         </div>
       </Router>
     </AuthProvider>

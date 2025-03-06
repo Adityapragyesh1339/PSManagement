@@ -174,10 +174,6 @@
 
 
 
-
-
-
-
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
@@ -189,6 +185,7 @@ function CategoryPage() {
   const navigate = useNavigate();
   const [passwords, setPasswords] = useState([]);
   const [newEntry, setNewEntry] = useState({
+    platformName:'',
     username: '',
     password: '',
     phoneNumber: '',
@@ -234,7 +231,7 @@ function CategoryPage() {
         },
         config
       );
-      setNewEntry({ username: '', password: '', phoneNumber: '' });
+      setNewEntry({ platformName:'', username: '', password: '', phoneNumber: '' });
       fetchPasswords();
     } catch (error) {
       setError(error.response?.data?.message || 'Failed to add password');
@@ -286,6 +283,16 @@ function CategoryPage() {
             </div>
           )}
           <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+              <label className="block text-sm font-medium text-gray-900">platform Name</label>
+              <input
+                type="text"
+                value={newEntry.platformName}
+                onChange={(e) => setNewEntry({ ...newEntry, platformName: e.target.value })}
+                className="mt-2 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2"
+                required
+              />
+            </div>
             <div>
               <label className="block text-sm font-medium text-gray-900">Username/Email</label>
               <input
@@ -321,6 +328,7 @@ function CategoryPage() {
             <table className="min-w-full divide-y divide-gray-300">
               <thead>
                 <tr>
+                <th className="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase">PlatForms</th>
                   <th className="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase">Username/Email</th>
                   <th className="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase">Password</th>
                   <th className="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase">Actions</th>
@@ -329,6 +337,7 @@ function CategoryPage() {
               <tbody className="bg-white divide-y divide-gray-300">
                 {passwords.map((entry) => (
                   <tr key={entry._id}>
+                    <td className="px-6 py-4">{entry.platformName}</td>
                     <td className="px-6 py-4">{entry.username}</td>
                     <td className="px-6 py-4 font-mono">••••••••</td>
                     <td className="px-6 py-4">

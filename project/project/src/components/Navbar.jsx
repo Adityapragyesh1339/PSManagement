@@ -50,8 +50,6 @@
 // export default Navbar;
 
 
-
-
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
@@ -59,43 +57,45 @@ function Navbar() {
   const { user, logout } = useAuth();
 
   return (
-    <nav className="bg-gradient-to-r from-indigo-700 to-purple-700 shadow-lg py-3">
-      <div className="max-w-6xl mx-auto flex justify-between items-center px-6">
-        <div>
-          <Link to="/" className="text-white font-extrabold text-2xl tracking-wide hover:text-gray-200 transition duration-300">
-            Password Manager
-          </Link>
-        </div>
-        <div>
-          {user ? (
-            <div className="flex items-center space-x-4">
-              <span className="text-white font-medium">{user.name}</span>
-              <button
-                onClick={logout}
-                className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg shadow-md transition duration-300"
-              >
-                Logout
-              </button>
-            </div>
-          ) : (
-            <div className="flex space-x-4">
-              <Link
-                to="/login"
-                className="text-white border border-white px-4 py-2 rounded-lg hover:bg-white hover:text-indigo-700 transition duration-300"
-              >
-                Login
-              </Link>
-              <Link
-                to="/register"
-                className="bg-white text-indigo-700 px-4 py-2 rounded-lg shadow-md hover:bg-gray-200 transition duration-300"
-              >
-                Register
-              </Link>
-            </div>
-          )}
-        </div>
+    <header className="w-full bg-gradient-to-r from-blue-700 to-blue-400 shadow-lg">
+      <div className="container mx-auto">
+        <nav className="flex flex-row justify-between items-center py-4 px-6">
+          <div>
+            <Link to="/" className="text-white font-bold text-2xl tracking-wide hover:text-gray-200 transition duration-300">
+              Password Manager
+            </Link>
+          </div>
+          <div>
+            {user ? (
+              <div className="flex items-center space-x-4">
+                <span className="text-white font-medium">{user.name}</span>
+                <button
+                  onClick={logout}
+                  className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-lg shadow-md transition duration-300"
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <div className="flex space-x-4">
+                <Link
+                  to="/login"
+                  className="text-white border border-white px-4 py-2 rounded-lg hover:bg-white hover:text-blue-700 transition duration-300"
+                >
+                  Login
+                </Link>
+                <Link
+                  to="/register"
+                  className="bg-white text-blue-700 px-4 py-2 rounded-lg shadow-md hover:bg-gray-200 transition duration-300"
+                >
+                  Register
+                </Link>
+              </div>
+            )}
+          </div>
+        </nav>
       </div>
-    </nav>
+    </header>
   );
 }
 

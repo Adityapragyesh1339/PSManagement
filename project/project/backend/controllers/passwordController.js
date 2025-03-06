@@ -5,12 +5,13 @@ import Password from '../models/passwordModel.js';
 // @access  Private
 const createPassword = async (req, res) => {
   try {
-    const { category, subcategory, username, password, phoneNumber } = req.body;
+    const {platformName, category, subcategory, username, password, phoneNumber } = req.body;
 
     const passwordEntry = await Password.create({
       user: req.user._id,
       category,
       subcategory,
+      platformName,
       username,
       password,
       phoneNumber,

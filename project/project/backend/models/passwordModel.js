@@ -16,6 +16,11 @@ const passwordSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    platformName:{
+      type: String,
+      required: true,
+
+    },
     username: {
       type: String,
       required: true,
